@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e435de707cfbda041ae64989f03873fb, type: 3}
+  m_Name: SongLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::BeatSaber.ScriptableObjects.SongLibrary
+  <songSpecs>k__BackingField:
+  - {fileID: 11400000, guid: a74b567175f8c7d4480c264d6ea0eddd, type: 2}
+  - {fileID: 11400000, guid: 0ab3fd2fd2ed83d43a65dd025c00d622, type: 2}
+  - {fileID: 11400000, guid: 66579ee089134cc49bc88db7fb1e218f, type: 2}
