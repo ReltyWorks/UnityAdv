@@ -15,6 +15,7 @@ namespace BeatSaber.Runtime.InGame
         [SerializeField] float _deadlineZ = -1f;
         [SerializeField] AudioSource _audioSource;
         [SerializeField] InGameWorkflow _workflow;
+        [SerializeField] NoteDissolveEffector _dissolveEffector;
         List<float> _peaks;
         Dictionary<Transform, float> _noteTable;
         List<Transform> _deadNotes;
@@ -48,10 +49,10 @@ namespace BeatSaber.Runtime.InGame
         IEnumerator C_SpawnNotes()
         {
             int index = 0;
-            // Reserving : ÀÚ·á±¸Á¶¸¦ »ç¿ëÇÒ¶§ ÀÚ·á¸¦ ¸î°³Á¤µµ »ç¿ëÇÒÁö ¾Ë¼öÀÖ´Â»óÈ²¿¡¼­´Â
-            // Capacity »ı¼ºÇÒ¶§ È®º¸ÇØ³ö¾ß ºÒÇÊ¿äÇÑ µ¿ÀûÇÒ´ç/°¡ºñÁöÄÃ·º¼Ç/ O(N) ¾Ë°í¸®Áò µîÀ» ³¶ºñÇÏÁö ¾ÊÀ»¼öÀÖ´Ù.
+            // Reserving : ìë£Œêµ¬ì¡°ë¥¼ ì‚¬ìš©í• ë•Œ ìë£Œë¥¼ ëª‡ê°œì •ë„ ì‚¬ìš©í• ì§€ ì•Œìˆ˜ìˆëŠ”ìƒí™©ì—ì„œëŠ”
+            // Capacity ìƒì„±í• ë•Œ í™•ë³´í•´ë†”ì•¼ ë¶ˆí•„ìš”í•œ ë™ì í• ë‹¹/ê°€ë¹„ì§€ì»¬ë ‰ì…˜/ O(N) ì•Œê³ ë¦¬ì¦˜ ë“±ì„ ë‚­ë¹„í•˜ì§€ ì•Šì„ìˆ˜ìˆë‹¤.
             _noteTable = new Dictionary<Transform, float>(_peaks.Count);
-            _deadNotes = new List<Transform>(20); // Dissolve ÁßÀÎ ³ëÆ®ÀÇ ÃÖ´ë °¹¼öÁ¤µµ
+            _deadNotes = new List<Transform>(20); // Dissolve ì¤‘ì¸ ë…¸íŠ¸ì˜ ìµœëŒ€ ê°¯ìˆ˜ì •ë„
 
             while (index < _peaks.Count)
             {
@@ -84,13 +85,15 @@ namespace BeatSaber.Runtime.InGame
 
                 foreach (KeyValuePair<Transform, float> notePair in _noteTable)
                 {
-                    Vector3 position = notePair.Key.transform.localPosition;
+                    Vector3 position = notePair.Key.localPosition;
                     position.z = (notePair.Value + NOTE_SPAWN_DELAY - _audioSource.time) * _workflow.playSpeed;
                     notePair.Key.localPosition = position;
 
                     if (position.z < _deadlineZ)
                     {
                         _deadNotes.Add(notePair.Key);
+                        Renderer renderer = notePair.Key.GetComponent<Renderer>();
+                        _dissolveEffector.Play(renderer);
                     }
                 }
 
@@ -101,6 +104,15 @@ namespace BeatSaber.Runtime.InGame
 
                 yield return null;
             }
+        }
+
+        public void DestroyNote(GameObject target)
+        {
+            if (_noteTable.ContainsKey(target.transform) == false)
+                return;
+
+            _noteTable.Remove(target.transform);
+            Destroy(target);
         }
     }
 }

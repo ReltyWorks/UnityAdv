@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Video;
 
-/* Attribute »ç¿ë¿¹½Ã
+/* Attribute ì‚¬ìš©ì˜ˆì‹œ
 public class EngineEditor
 {
     GameObject _selected;
@@ -19,7 +19,7 @@ public class EngineEditor
         {
             var publicFields = component.GetType().GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
 
-            // TODO : publicFields ¼øÈ¸ÇÏ¸é¼­ Inspector ¿¡ ±×¸² 
+            // TODO : publicFields ìˆœíšŒí•˜ë©´ì„œ Inspector ì— ê·¸ë¦¼ 
             foreach (var field in publicFields)
             {
                 Debug.Log(field.Name);

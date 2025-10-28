@@ -54,7 +54,7 @@ namespace BeatSaber.Runtime.InGame
             _audioSource.Play();
 
             current = State.WaitForFinished;
-            // TODO : ³ëÆ® ´Ù »ç¶óÁú¶§±îÁö ´ë±â
+            // TODO : ë…¸íŠ¸ ë‹¤ ì‚¬ë¼ì§ˆë•Œê¹Œì§€ ëŒ€ê¸°
         }
     }
 }
