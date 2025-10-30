@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static BeatSaber.Runtime.InGame.InGameConstants;
+using BeatSaber.Runtime.Infrastructure.DI.Scoping;
 
 namespace BeatSaber.Runtime.InGame
 {
@@ -19,10 +20,12 @@ namespace BeatSaber.Runtime.InGame
         List<float> _peaks;
         Dictionary<Transform, float> _noteTable;
         List<Transform> _deadNotes;
+        [Inject] GameStateBlackboard _gameStateBlackboard;
+
 
         private void Start()
         {
-            _peaks = ApplicationScope.selected.peaks;
+            _peaks = _gameStateBlackboard.selected.peaks;
             _workflow.onStateChanged += OnWorkflowStateChanged;
         }
 

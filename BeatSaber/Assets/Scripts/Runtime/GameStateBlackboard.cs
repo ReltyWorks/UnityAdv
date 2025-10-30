@@ -1,4 +1,4 @@
-﻿using BeatSaber.ScriptableObjects;
+using BeatSaber.ScriptableObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BeatSaber.Runtime
 {
-    public static class ApplicationScope
+    public class GameStateBlackboard
     {
-        public static SongSpec selected;
+        public SongSpec selected;
     }
 }

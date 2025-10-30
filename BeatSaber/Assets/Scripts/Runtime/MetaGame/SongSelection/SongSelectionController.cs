@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using BeatSaber.ScriptableObjects;
 using UnityEngine.SceneManagement;
+using BeatSaber.Runtime.Infrastructure.DI.Scoping;
 
 namespace BeatSaber.Runtime.MetaGame.SongSelection
 {
@@ -14,20 +15,14 @@ namespace BeatSaber.Runtime.MetaGame.SongSelection
         [SerializeField] SongSelectionView _view;
         [SerializeField] SongLibrary _songLibrary;
         int _selectedIndex;
+        [Inject] GameStateBlackboard _gameStateBlackboard;
 
-        private void OnEnable()
+        private void Start()
         {
             _view.nextRequested += Next;
             _view.prevRequested += Prev;
             _view.playRequested += Play;
             UpdateView();
-        }
-
-        private void OnDisable()
-        {
-            _view.nextRequested -= Next;
-            _view.prevRequested -= Prev;
-            _view.playRequested -= Play;
         }
 
         private void Next()
@@ -52,7 +47,7 @@ namespace BeatSaber.Runtime.MetaGame.SongSelection
 
         private void Play()
         {
-            ApplicationScope.selected = _songLibrary.songSpecs[_selectedIndex];
+            _gameStateBlackboard.selected = _songLibrary.songSpecs[_selectedIndex];
             SceneManager.LoadScene("InGame");
         }
 

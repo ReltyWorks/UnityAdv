@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2349,11 +2349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42ebc887ec44a140a9df7fe46526d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeatSaber.Runtime.MetaGame.SongSelection.SongSelectionView
-  _videoPlayer: {fileID: 1898874327}
-  _songTitle: {fileID: 234264890}
-  _next: {fileID: 334318876}
-  _prev: {fileID: 150617058}
-  _play: {fileID: 867831992}
 --- !u!4 &2086686045
 Transform:
   m_ObjectHideFlags: 0

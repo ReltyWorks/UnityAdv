@@ -1,3 +1,4 @@
+using BeatSaber.Runtime.Infrastructure.DI.Scoping;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -35,12 +36,13 @@ namespace BeatSaber.Runtime.InGame
         State _current;
         [SerializeField] AudioSource _audioSource;
         WaitForSeconds _waitFor1Seconds = new WaitForSeconds(1);
+        [Inject] GameStateBlackboard _gameStateBlackboard;
 
         public event Action<State> onStateChanged;
 
         IEnumerator Start()
         {
-            _audioSource.clip = ApplicationScope.selected.audioClip;
+            _audioSource.clip = _gameStateBlackboard.selected.audioClip;
             current = State.Standby;
             
             while (countDown > 0)
