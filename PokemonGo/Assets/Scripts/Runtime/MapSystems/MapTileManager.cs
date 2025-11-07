@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using VContainer;
 using static PokemonGo.Runtime.Services.GoogleMap.GoogleMapUtils;
+using static PokemonGo.Runtime.MapSystems.BlackboardInMap;
 
 namespace PokemonGo.Runtime.MapSystems
 {
@@ -27,7 +28,6 @@ namespace PokemonGo.Runtime.MapSystems
         MapTile[,] _mapTiles = new MapTile[3, 3];
         MapTile[] _rollingBuffer = new MapTile[3];
         int[] _tilePatterns = { -1, 0, 1 };
-        int _zoom = 16;
         MaterialPropertyBlock _materialPropertyBlock;
         static readonly int s_baseMapId = Shader.PropertyToID("_BaseMap");
 
@@ -36,6 +36,7 @@ namespace PokemonGo.Runtime.MapSystems
         {
             _materialPropertyBlock = new MaterialPropertyBlock();
         }
+
         IEnumerator Start()
         {
             yield return new WaitUntil(() => _internetConnectionService.isConnected);
@@ -49,8 +50,8 @@ namespace PokemonGo.Runtime.MapSystems
             double lat = _gpsService.latitude;
             double lon = _gpsService.longitude;
             _locationOrigin = new MapLocation(lat, lon);
-            float z = LatToUnityY(lat, 0, _zoom);
-            float x = LonToUnityX(lon, 0, _zoom);
+            float z = LatToUnityY(lat, 0, zoom);
+            float x = LonToUnityX(lon, 0, zoom);
 
             _zeroOffset = new Vector3(x, 0, z);
             _center = _zeroOffset;
@@ -67,9 +68,9 @@ namespace PokemonGo.Runtime.MapSystems
                                                       - _zeroOffset;
                     mapTile.transform.localScale = Vector3.one * (float)(UNITY_UNIT / 10.0);
                     yield return _googleStaticMapService.C_LoadMap(
-                        UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, _zoom),
-                        UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, _zoom),
-                        _zoom,
+                        UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, zoom),
+                        UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, zoom),
+                        zoom,
                         (int)GoogleMapUtils.PIXELS * Vector2Int.one,
                         texture => OnTextureLoaded(mapTile.GetComponent<Renderer>(), texture));
 
@@ -99,8 +100,8 @@ namespace PokemonGo.Runtime.MapSystems
             double lat = _gpsService.latitude;
             double lon = _gpsService.longitude;
 
-            float z = LatToUnityY(lat, 0, _zoom);
-            float x = LonToUnityX(lon, 0, _zoom);
+            float z = LatToUnityY(lat, 0, zoom);
+            float x = LonToUnityX(lon, 0, zoom);
 
             float dz = z - _center.z;
             float dx = x - _center.x;
@@ -186,8 +187,8 @@ namespace PokemonGo.Runtime.MapSystems
 
             double lat = _gpsService.latitude;
             double lon = _gpsService.longitude;
-            float z = LatToUnityY(lat, 0, _zoom);
-            float x = LonToUnityX(lon, 0, _zoom);
+            float z = LatToUnityY(lat, 0, zoom);
+            float x = LonToUnityX(lon, 0, zoom);
 
             for (int i = 0; i < _mapTiles.GetLength(1); i++)
             {
@@ -203,9 +204,9 @@ namespace PokemonGo.Runtime.MapSystems
                     if (i == insertIdx)
                     {
                         yield return _googleStaticMapService.C_LoadMap(
-                            UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, _zoom),
-                            UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, _zoom),
-                            _zoom,
+                            UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, zoom),
+                            UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, zoom),
+                            zoom,
                             (int)GoogleMapUtils.PIXELS * Vector2Int.one,
                             texture => OnTextureLoaded(mapTile.GetComponent<Renderer>(), texture));
                     }
@@ -255,8 +256,8 @@ namespace PokemonGo.Runtime.MapSystems
 
             double lat = _gpsService.latitude;
             double lon = _gpsService.longitude;
-            float z = LatToUnityY(lat, 0, _zoom);
-            float x = LonToUnityX(lon, 0, _zoom);
+            float z = LatToUnityY(lat, 0, zoom);
+            float x = LonToUnityX(lon, 0, zoom);
 
             for (int i = 0; i < _mapTiles.GetLength(1); i++)
             {
@@ -272,9 +273,9 @@ namespace PokemonGo.Runtime.MapSystems
                     if (j == insertIdx)
                     {
                         yield return _googleStaticMapService.C_LoadMap(
-                            UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, _zoom),
-                            UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, _zoom),
-                            _zoom,
+                            UnityYToLat(z + (j - 1) * (float)UNITY_UNIT, 0, zoom),
+                            UnityXToLon(x + (i - 1) * (float)UNITY_UNIT, 0, zoom),
+                            zoom,
                             (int)GoogleMapUtils.PIXELS * Vector2Int.one,
                             texture => OnTextureLoaded(mapTile.GetComponent<Renderer>(), texture));
                     }

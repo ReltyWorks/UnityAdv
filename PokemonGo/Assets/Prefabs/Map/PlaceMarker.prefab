@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 232846400994536774}
   - component: {fileID: 4861127431283759634}
   - component: {fileID: 8004628842206989564}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -2477489271859687044, guid: 738a246056cb88b4ea33ac86e359496c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 738a246056cb88b4ea33ac86e359496c, type: 2}
+  m_sharedMaterial: {fileID: -2477489271859687044, guid: 738a246056cb88b4ea33ac86e359496c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 7373418107100699475}
   - component: {fileID: 4254362361989445020}
   - component: {fileID: 8007819699889013282}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2695456200794481976}
   - component: {fileID: 979391584910183694}
-  m_Layer: 0
+  - component: {fileID: 5333845037371089550}
+  m_Layer: 10
   m_Name: PlaceMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,6 +317,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf66caf5ac84de4b93bd4186b84d58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PokemonGo.Runtime.MapSystems.PlaceMarker
+--- !u!136 &5333845037371089550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977841123148536653}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8247449194511212968
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +351,7 @@ GameObject:
   - component: {fileID: 1232017108799628662}
   - component: {fileID: 4291461894813504099}
   - component: {fileID: 8517300603635270496}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +440,7 @@ GameObject:
   - component: {fileID: 7958325954521384039}
   - component: {fileID: 7695212933542170650}
   - component: {fileID: 4462336603058781017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

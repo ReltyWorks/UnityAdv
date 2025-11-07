@@ -60,6 +60,7 @@ namespace PokemonGo.Runtime.Services.GPS
             latitude = origin.latitude + UnityYToLat(_mockPlayer.position.z, 0, 16);
             longitude = origin.longitude + UnityXToLon(_mockPlayer.position.x, 0, 16);
             onLocationUpdated?.Invoke(latitude, longitude, 0, 0, 0);
+            Debug.Log($"Updated location {latitude}, {longitude}");
         }
     }
 }
