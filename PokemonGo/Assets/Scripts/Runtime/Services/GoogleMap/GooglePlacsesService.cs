@@ -10,8 +10,8 @@ namespace PokemonGo.Runtime.Services.GoogleMap
 {
     public class GooglePlacesService : MonoBehaviour
     {
-        private const string BASE_URL = "https://places.googleapis.com/v1/places:searchNearby";
-        private const string API_KEY = "AIzaSyAbTe7ZpSs9ukFMUT0TjzIQ1L91R-JDoqI";
+        private const string BASE_URL = "XXXXXX";
+        private const string API_KEY = "XXXXXX";
 
         #region SearchNearby ��û ��
 
